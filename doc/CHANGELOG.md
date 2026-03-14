@@ -126,6 +126,11 @@
 - Preserved protected-route redirects (`/login?next=...`) and auth-route redirect behavior for signed-in sessions.
 - Re-ran quality gates successfully: `pnpm typecheck`, `pnpm lint`, and `pnpm test`.
 
+## Live Login Stabilization + Demo Credential Refresh
+- Simplified root `middleware.ts` to cookie-based session checks and removed `@supabase/ssr` middleware dependency to stabilize Edge runtime behavior on Vercel.
+- Removed stale `lib/supabase/middleware.ts` implementation that was no longer used.
+- Refreshed and verified demo users for all roles with one known password via Supabase admin APIs.
+
 ## One-Page PRD UI
 - Replaced `app/page.tsx` redirect logic with a full one-page interactive experience matching PRD scope.
 - Added sections for product positioning, module-by-module scope coverage, role coverage, and testing access credentials.
