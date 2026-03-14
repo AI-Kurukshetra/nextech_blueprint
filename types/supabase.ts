@@ -671,59 +671,6 @@ export type Database = {
           },
         ]
       }
-      practice_member_locations: {
-        Row: {
-          assigned_by_user_id: string | null
-          created_at: string
-          location_id: string
-          practice_id: string
-          user_id: string
-        }
-        Insert: {
-          assigned_by_user_id?: string | null
-          created_at?: string
-          location_id: string
-          practice_id: string
-          user_id: string
-        }
-        Update: {
-          assigned_by_user_id?: string | null
-          created_at?: string
-          location_id?: string
-          practice_id?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "practice_member_locations_assigned_by_fk"
-            columns: ["practice_id", "assigned_by_user_id"]
-            isOneToOne: false
-            referencedRelation: "practice_memberships"
-            referencedColumns: ["practice_id", "user_id"]
-          },
-          {
-            foreignKeyName: "practice_member_locations_location_fk"
-            columns: ["practice_id", "location_id"]
-            isOneToOne: false
-            referencedRelation: "locations"
-            referencedColumns: ["practice_id", "id"]
-          },
-          {
-            foreignKeyName: "practice_member_locations_practice_fk"
-            columns: ["practice_id"]
-            isOneToOne: false
-            referencedRelation: "practices"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "practice_member_locations_user_fk"
-            columns: ["practice_id", "user_id"]
-            isOneToOne: false
-            referencedRelation: "practice_memberships"
-            referencedColumns: ["practice_id", "user_id"]
-          },
-        ]
-      }
       practice_memberships: {
         Row: {
           created_at: string
@@ -778,6 +725,59 @@ export type Database = {
           },
           {
             foreignKeyName: "practice_memberships_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      practice_member_locations: {
+        Row: {
+          assigned_by_user_id: string | null
+          created_at: string
+          location_id: string
+          practice_id: string
+          user_id: string
+        }
+        Insert: {
+          assigned_by_user_id?: string | null
+          created_at?: string
+          location_id: string
+          practice_id: string
+          user_id: string
+        }
+        Update: {
+          assigned_by_user_id?: string | null
+          created_at?: string
+          location_id?: string
+          practice_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "practice_member_locations_assigned_by_user_id_fkey"
+            columns: ["assigned_by_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "practice_member_locations_location_fk"
+            columns: ["practice_id", "location_id"]
+            isOneToOne: false
+            referencedRelation: "locations"
+            referencedColumns: ["practice_id", "id"]
+          },
+          {
+            foreignKeyName: "practice_member_locations_membership_fk"
+            columns: ["practice_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "practice_memberships"
+            referencedColumns: ["practice_id", "user_id"]
+          },
+          {
+            foreignKeyName: "practice_member_locations_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"

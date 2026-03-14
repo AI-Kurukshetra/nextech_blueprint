@@ -83,3 +83,9 @@ Reason: The MVP needs immediate throughput and revenue visibility without introd
 
 ## [QA] Scope Vitest to unit suites and keep Playwright in `test:e2e`
 Reason: Running Playwright specs inside Vitest causes framework conflicts. Explicitly scoping Vitest includes to `tests/unit` preserves reliable unit gates while `pnpm test:e2e` owns browser workflows.
+
+## [DB] Keep a local compatibility patch for `practice_member_locations` in `types/supabase.ts`
+Reason: Supabase type generation currently omits this table/function in our environment despite the table existing and being queryable. Keeping the explicit typed block avoids `any` workarounds and preserves compile-time safety for team-access and scheduling flows.
+
+## [AUTH] Make middleware auth resolution resilient across Edge runtime differences
+Reason: Production middleware surfaced `MIDDLEWARE_INVOCATION_FAILED`. The auth client shape can vary (`getUser` not always available), so middleware now resolves user via `getUser` with a `getSession` fallback and avoids hard-throwing on missing env in public routes.

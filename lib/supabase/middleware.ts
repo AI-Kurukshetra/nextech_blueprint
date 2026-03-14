@@ -7,17 +7,71 @@ function getSupabaseEnv() {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !anonKey) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY."
-    );
+    return null;
   }
 
   return { url, anonKey };
 }
 
+type MiddlewareAuth = {
+  getSession?: () => Promise<{
+    data: {
+      session: { user: { id: string } | null } | null;
+    };
+  }>;
+  getUser?: () => Promise<{
+    data: {
+      user: { id: string } | null;
+    };
+  }>;
+};
+
+async function resolveAuthUser(auth: MiddlewareAuth) {
+  if (typeof auth.getUser === "function") {
+    try {
+      const result = await auth.getUser();
+      if (result.data.user) {
+        return result.data.user;
+      }
+    } catch {
+      // Fall through to session-based resolution for edge/runtime variance.
+    }
+  }
+
+  if (typeof auth.getSession === "function") {
+    try {
+      const result = await auth.getSession();
+      return result.data.session?.user ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
 export async function updateSession(request: NextRequest) {
+  const isProtectedRoute = isProtectedAppPath(request.nextUrl.pathname);
+  const isAuthRoute =
+    request.nextUrl.pathname.startsWith("/login") ||
+    request.nextUrl.pathname.startsWith("/register");
+
+  const supabaseEnv = getSupabaseEnv();
+  if (!supabaseEnv) {
+    if (isProtectedRoute) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.searchParams.set(
+        "next",
+        `${request.nextUrl.pathname}${request.nextUrl.search}`
+      );
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next({ request });
+  }
+
   let supabaseResponse = NextResponse.next({ request });
-  const { url, anonKey } = getSupabaseEnv();
+  const { url, anonKey } = supabaseEnv;
 
   const supabase = createServerClient(url, anonKey, {
     cookies: {
@@ -34,14 +88,7 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const isAuthRoute =
-    request.nextUrl.pathname.startsWith("/login") ||
-    request.nextUrl.pathname.startsWith("/register");
-  const isProtectedRoute = isProtectedAppPath(request.nextUrl.pathname);
+  const user = await resolveAuthUser(supabase.auth as unknown as MiddlewareAuth);
 
   if (!user && isProtectedRoute) {
     const url = request.nextUrl.clone();

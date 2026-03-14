@@ -19,7 +19,7 @@
 
 ## Database & Auth Foundation
 - [x] Create the first Supabase migration for practices, memberships, locations, patients, insurance, appointments, clinical notes, documents, billing, and audit logs with RLS (2026-03-14 09:55)
-- [~] Apply the migrations to the target Supabase database and regenerate `types/supabase.ts` (2026-03-14 16:55 - project is linked and remote types were regenerated, but Supabase CLI migration-history reconciliation is blocked by missing `SUPABASE_DB_PASSWORD`; local type patch kept `practice_member_locations` to preserve type safety until DB history is finalized)
+- [x] Apply the migrations to the target Supabase database and regenerate `types/supabase.ts` (2026-03-14 17:06 - migration history reconciled with DB password, `pnpm db:migrate` reports up to date, and type safety restored for `practice_member_locations`/`has_location_access`)
 - [x] Implement auth and practice onboarding so a signed-in owner can create a practice and land in the protected app (2026-03-14 10:50)
 - [x] Build staff role management for practice members and location-aware access (2026-03-14 11:15)
 - [x] Build the protected dashboard shell and navigation for patients, scheduling, charting, billing, documents, and reports (2026-03-14 11:29)

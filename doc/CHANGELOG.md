@@ -103,4 +103,15 @@
 ## Supabase Link + Type Sync Follow-up
 - Linked the workspace to Supabase project `qoommnnvgrdxljdyiilw` using a personal access token.
 - Regenerated `types/supabase.ts` from remote metadata and then patched in the `practice_member_locations` table/function typing to match the app's active migration usage.
-- Migration history reconciliation remains open because Supabase CLI now requires `SUPABASE_DB_PASSWORD` for the remaining repair/list operations.
+- Migration history reconciliation is now complete after DB-password authentication and repair verification.
+
+## Supabase Migration Reconciliation Complete
+- Reconciled migration history using DB-password authentication and verified local/remote versions are aligned (`20260314095500`, `20260314121500`).
+- Confirmed `pnpm db:migrate` now reports `Remote database is up to date`.
+- Restored strict type safety by re-adding `practice_member_locations` and `has_location_access` in `types/supabase.ts` after Supabase type generation omitted them.
+- Re-ran quality gates successfully: `pnpm typecheck`, `pnpm lint`, and `pnpm test`.
+
+## Production Middleware Stabilization
+- Hardened `lib/supabase/middleware.ts` to avoid runtime crashes when Edge auth surface differs (`getUser` fallback to `getSession`).
+- Changed middleware env handling to fail safe: protected routes redirect to `/login` and public routes continue instead of returning a global 500.
+- Re-ran quality gates successfully: `pnpm typecheck`, `pnpm lint`, and `pnpm test`.

@@ -49,3 +49,4 @@
 ## Migration History
 - `20260314095500_create_core_ehr_tables.sql`: Initial MVP schema for practices, memberships, locations, patients, insurance, appointments, clinical notes, documents, billing, audit logs, helper functions, triggers, indexes, and RLS.
 - `20260314121500_add_practice_member_location_access.sql`: Adds the membership-to-location access table, the `has_location_access()` helper, and location-aware RLS updates for `locations` and `appointments`.
+- `2026-03-14 17:06` reconciliation: local and remote migration history are aligned and `pnpm db:migrate` reports the remote database is up to date.
