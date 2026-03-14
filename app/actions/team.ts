@@ -1,5 +1,3 @@
-"use server";
-
 import type { Route } from "next";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -313,6 +311,8 @@ export async function createLocationAction(
   _previousState: TeamActionState,
   payload: CreateLocationInput
 ): Promise<TeamActionState> {
+  "use server";
+
   const parsedPayload = createLocationSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -379,6 +379,8 @@ export async function createPracticeMemberAction(
   _previousState: TeamActionState,
   payload: CreatePracticeMemberInput
 ): Promise<TeamActionState> {
+  "use server";
+
   const parsedPayload = createPracticeMemberSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -501,6 +503,8 @@ export async function updatePracticeMemberAction(
   _previousState: TeamActionState,
   payload: UpdatePracticeMemberInput
 ): Promise<TeamActionState> {
+  "use server";
+
   const parsedPayload = updatePracticeMemberSchema.safeParse(payload);
 
   if (!parsedPayload.success) {

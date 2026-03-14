@@ -1,5 +1,3 @@
-"use server";
-
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -100,6 +98,8 @@ export async function createPatientAction(
   _previousState: PatientActionState,
   payload: PatientIntakeInput
 ): Promise<PatientActionState> {
+  "use server";
+
   const parsedPayload = patientIntakeSchema.safeParse(payload);
 
   if (!parsedPayload.success) {

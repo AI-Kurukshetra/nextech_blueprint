@@ -1,5 +1,3 @@
-"use server";
-
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { requireUserPracticeContext } from "@/lib/auth/session";
@@ -301,6 +299,8 @@ export async function createAppointmentAction(
   _previousState: AppointmentActionState,
   payload: CreateAppointmentInput
 ): Promise<AppointmentActionState> {
+  "use server";
+
   const parsedPayload = createAppointmentSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -413,6 +413,8 @@ export async function updateAppointmentStatusAction(
   _previousState: AppointmentActionState,
   payload: UpdateAppointmentStatusInput
 ): Promise<AppointmentActionState> {
+  "use server";
+
   const parsedPayload = updateAppointmentStatusSchema.safeParse(payload);
 
   if (!parsedPayload.success) {

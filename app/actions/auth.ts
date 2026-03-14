@@ -1,5 +1,3 @@
-"use server";
-
 import type { Route } from "next";
 import type { User } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
@@ -136,6 +134,8 @@ export async function signInAction(
   _previousState: ActionState,
   payload: SignInInput
 ): Promise<ActionState> {
+  "use server";
+
   const parsedPayload = signInSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -182,6 +182,8 @@ export async function signUpAction(
   _previousState: ActionState,
   payload: SignUpInput
 ): Promise<ActionState> {
+  "use server";
+
   const parsedPayload = signUpSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -234,6 +236,8 @@ export async function createPracticeAction(
   _previousState: ActionState,
   payload: PracticeOnboardingInput
 ): Promise<ActionState> {
+  "use server";
+
   const parsedPayload = practiceOnboardingSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -299,6 +303,8 @@ export async function createPracticeAction(
 }
 
 export async function signOutAction() {
+  "use server";
+
   const supabase = await createClient();
   await supabase.auth.signOut();
   revalidatePath("/");

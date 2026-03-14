@@ -1,5 +1,3 @@
-"use server";
-
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { requireUserPracticeContext } from "@/lib/auth/session";
@@ -210,6 +208,8 @@ export async function createBillingRecordAction(
   _previousState: BillingActionState,
   payload: CreateBillingRecordInput
 ): Promise<BillingActionState> {
+  "use server";
+
   const parsedPayload = createBillingRecordSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -322,6 +322,8 @@ export async function updateBillingRecordStatusAction(
   _previousState: BillingActionState,
   payload: UpdateBillingRecordStatusInput
 ): Promise<BillingActionState> {
+  "use server";
+
   const parsedPayload = updateBillingRecordStatusSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
