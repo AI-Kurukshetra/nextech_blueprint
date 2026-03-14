@@ -90,3 +90,12 @@
 - Added `tests/e2e/mvp-happy-path.spec.ts` covering auth plus patient intake, scheduling, charting, and billing happy-path progression (env-gated by `E2E_STAFF_EMAIL` and `E2E_STAFF_PASSWORD`).
 - Updated `vitest.config.ts` to include only `tests/unit/**/*.test.ts` so unit and E2E suites do not conflict.
 - Verified quality gates with `pnpm typecheck`, `pnpm lint`, `pnpm test`, and Playwright test discovery via `pnpm test:e2e -- --list`.
+
+## Git + Vercel Delivery
+- Repointed repository delivery to `https://github.com/AI-Kurukshetra/nextech_blueprint` and pushed all MVP + fix commits on `main`.
+- Created and linked Vercel project `nextech-blueprint`, then configured production env vars (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_APP_URL`).
+- Repaired deployment blockers discovered on Vercel builds:
+  - Restored `types/supabase.ts` after accidental empty overwrite.
+  - Refactored server action files to keep `"use server"` at file scope with async-only value exports.
+  - Switched middleware imports to edge-compatible relative paths.
+- Deployed successfully and aliased production to `https://nextech-blueprint.vercel.app`.

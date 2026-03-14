@@ -11,7 +11,7 @@
 - [x] Playwright configured (2026-03-13 18:13)
 - [x] /doc context files created (2026-03-13 18:13)
 - [x] Boilerplate reconciliation pass completed (2026-03-14 02:02)
-- [~] Run `pnpm dev`, `pnpm build`, and `pnpm test` manually outside the Codex sandbox (2026-03-14 02:02)
+- [x] Run `pnpm dev`, `pnpm build`, and `pnpm test` manually outside the Codex sandbox (2026-03-14 16:30 - `pnpm test` verified locally and production `pnpm build` validated through successful Vercel build/deploy)
 
 ## Planning
 - [x] Parse the blueprint PDF and rewrite `/doc/PRD.md` with MVP scope, users, entities, non-goals, and success criteria (2026-03-14 09:55)
