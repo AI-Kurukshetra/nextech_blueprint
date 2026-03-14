@@ -37,3 +37,4 @@
 - [x] Add unit coverage for validations, helpers, and data access paths introduced by the MVP (2026-03-14 12:44)
 - [x] Add Playwright coverage for auth, patient intake, scheduling, charting, and billing happy paths (2026-03-14 12:44)
 - [x] Run a final review pass before the first feature commit once the vertical slices above are complete (2026-03-14 12:44)
+- [x] Build a PRD-aligned one-page interactive overview UI on `/` covering modules, roles, scope, and demo access (2026-03-14 18:23)

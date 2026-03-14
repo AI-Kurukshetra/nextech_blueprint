@@ -125,3 +125,8 @@
 - Replaced Supabase client initialization in `lib/supabase/middleware.ts` with cookie-based session gating to avoid edge-runtime `__dirname` failures.
 - Preserved protected-route redirects (`/login?next=...`) and auth-route redirect behavior for signed-in sessions.
 - Re-ran quality gates successfully: `pnpm typecheck`, `pnpm lint`, and `pnpm test`.
+
+## One-Page PRD UI
+- Replaced `app/page.tsx` redirect logic with a full one-page interactive experience matching PRD scope.
+- Added sections for product positioning, module-by-module scope coverage, role coverage, and testing access credentials.
+- Applied a bold color-forward layout (cyan/emerald/amber accents on slate background) with interactive details cards and responsive structure.
