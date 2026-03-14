@@ -89,3 +89,6 @@ Reason: Supabase type generation currently omits this table/function in our envi
 
 ## [AUTH] Make middleware auth resolution resilient across Edge runtime differences
 Reason: Production middleware surfaced `MIDDLEWARE_INVOCATION_FAILED`. The auth client shape can vary (`getUser` not always available), so middleware now resolves user via `getUser` with a `getSession` fallback and avoids hard-throwing on missing env in public routes.
+
+## [CONFIG] Remove `__dirname` usage from ESM configuration files
+Reason: Vercel runtime surfaced `ReferenceError: __dirname is not defined`. ESM-safe URL resolution (`new URL(".", import.meta.url).pathname`) avoids CommonJS-only globals.

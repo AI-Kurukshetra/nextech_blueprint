@@ -115,3 +115,8 @@
 - Hardened `lib/supabase/middleware.ts` to avoid runtime crashes when Edge auth surface differs (`getUser` fallback to `getSession`).
 - Changed middleware env handling to fail safe: protected routes redirect to `/login` and public routes continue instead of returning a global 500.
 - Re-ran quality gates successfully: `pnpm typecheck`, `pnpm lint`, and `pnpm test`.
+
+## ESM Path Compatibility Hotfix
+- Updated `vitest.config.ts` to remove `path.resolve(__dirname, ".")`.
+- Replaced alias resolution with `new URL(".", import.meta.url).pathname`.
+- Removed `path` import from `vitest.config.ts`.
