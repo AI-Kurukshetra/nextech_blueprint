@@ -1,0 +1,18 @@
+[experimental]
+multi_agent = true
+
+[agents.frontend]
+description = "Handles UI"
+config_file = "agents/frontend.toml"
+
+[agents.backend]
+description = "Handles APIs and DB"
+config_file = "agents/backend.toml"
+
+[agents.tester]
+description = "Runs tests"
+config_file = "agents/tester.toml"
+
+[agents.reviewer]
+description = "Reviews diffs"
+config_file = "agents/reviewer.toml"
