@@ -120,3 +120,8 @@
 - Updated `vitest.config.ts` to remove `path.resolve(__dirname, ".")`.
 - Replaced alias resolution with `new URL(".", import.meta.url).pathname`.
 - Removed `path` import from `vitest.config.ts`.
+
+## Edge Middleware Runtime Hotfix
+- Replaced Supabase client initialization in `lib/supabase/middleware.ts` with cookie-based session gating to avoid edge-runtime `__dirname` failures.
+- Preserved protected-route redirects (`/login?next=...`) and auth-route redirect behavior for signed-in sessions.
+- Re-ran quality gates successfully: `pnpm typecheck`, `pnpm lint`, and `pnpm test`.

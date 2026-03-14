@@ -92,3 +92,6 @@ Reason: Production middleware surfaced `MIDDLEWARE_INVOCATION_FAILED`. The auth 
 
 ## [CONFIG] Remove `__dirname` usage from ESM configuration files
 Reason: Vercel runtime surfaced `ReferenceError: __dirname is not defined`. ESM-safe URL resolution (`new URL(".", import.meta.url).pathname`) avoids CommonJS-only globals.
+
+## [AUTH] Keep edge middleware dependency-light with cookie-based session detection
+Reason: Production edge runtime kept failing with `ReferenceError: __dirname is not defined` during middleware execution. Removing Supabase client creation from middleware isolates edge execution from upstream runtime incompatibilities and restores route availability.
