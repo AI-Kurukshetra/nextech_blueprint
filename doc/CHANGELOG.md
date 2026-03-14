@@ -99,3 +99,8 @@
   - Refactored server action files to keep `"use server"` at file scope with async-only value exports.
   - Switched middleware imports to edge-compatible relative paths.
 - Deployed successfully and aliased production to `https://nextech-blueprint.vercel.app`.
+
+## Supabase Link + Type Sync Follow-up
+- Linked the workspace to Supabase project `qoommnnvgrdxljdyiilw` using a personal access token.
+- Regenerated `types/supabase.ts` from remote metadata and then patched in the `practice_member_locations` table/function typing to match the app's active migration usage.
+- Migration history reconciliation remains open because Supabase CLI now requires `SUPABASE_DB_PASSWORD` for the remaining repair/list operations.

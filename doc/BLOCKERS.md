@@ -1,6 +1,6 @@
 ﻿# BLOCKERS
-[2026-03-14 16:30] BLOCKER - Codex
-Problem:   Supabase CLI migration apply and remote type regeneration are still blocked because no `SUPABASE_ACCESS_TOKEN` is configured.
-Attempted: Ran `pnpm db:migrate` (failed: project not linked), `pnpm db:types` local (failed: Docker unavailable), and remote generation with `--project-id` (failed: access token missing).
-Needs:     Provide `SUPABASE_ACCESS_TOKEN` (or apply migration and generate types manually), then rerun migration + type generation.
+[2026-03-14 16:55] BLOCKER - Codex
+Problem:   Supabase migration history is out of sync with existing schema objects; CLI now requires database-password auth and returns `FATAL: Circuit breaker open ... set SUPABASE_DB_PASSWORD`.
+Attempted: Linked project with access token, ran `pnpm db:migrate` (failed because enum/type already exists), regenerated remote types, attempted migration repair/list (partially repaired one version, then blocked by DB-password requirement).
+Needs:     Provide `SUPABASE_DB_PASSWORD` so migration history can be repaired cleanly (`supabase migration repair`) and `pnpm db:migrate` can complete without replaying already-applied SQL.
 <!-- Format: [YYYY-MM-DD HH:MM] BLOCKER - <agent> | Problem: | Attempted: | Needs: -->
