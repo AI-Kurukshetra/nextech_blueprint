@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createPracticeMemberAction,
-  initialTeamActionState,
   type TeamActionState,
 } from "@/app/actions/team";
 import { FormStatus } from "@/components/auth/form-status";
@@ -61,6 +60,7 @@ const defaultValues: CreatePracticeMemberFormValues = {
   role: "provider",
   specialties: ["dermatology"],
 };
+const initialTeamActionState: TeamActionState = { status: "idle" };
 
 export function AddPracticeMemberForm({
   locations,

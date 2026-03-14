@@ -3,8 +3,8 @@
 import { startTransition, useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  initialAppointmentActionState,
   updateAppointmentStatusAction,
+  type AppointmentActionState,
 } from "@/app/actions/appointments";
 import { FormStatus } from "@/components/auth/form-status";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,8 @@ type AppointmentStatusFormProps = {
   availableStatuses: AppointmentStatus[];
   currentStatus: AppointmentStatus;
 };
+
+const initialAppointmentActionState: AppointmentActionState = { status: "idle" };
 
 const selectClassName =
   "flex h-10 w-full rounded-md border border-white/10 bg-slate-950/70 px-3 py-2 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20";

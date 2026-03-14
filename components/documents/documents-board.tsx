@@ -4,8 +4,8 @@ import { startTransition, useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Search } from "lucide-react";
 import {
-  initialDocumentActionState,
   updatePatientDocumentVisibilityAction,
+  type DocumentActionState,
 } from "@/app/actions/documents";
 import type {
   PatientDocumentEntry,
@@ -28,6 +28,8 @@ type DocumentsBoardProps = {
   documents: PatientDocumentEntry[];
   stats: PatientDocumentStats;
 };
+
+const initialDocumentActionState: DocumentActionState = { status: "idle" };
 
 function formatDateTime(value: string) {
   return new Intl.DateTimeFormat("en-US", {

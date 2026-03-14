@@ -1,3 +1,5 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { requireUserPracticeContext } from "@/lib/auth/session";
@@ -16,10 +18,6 @@ export type DocumentActionState = {
   fieldErrors?: ValidationErrors;
   message?: string;
   status: "error" | "idle" | "success";
-};
-
-export const initialDocumentActionState: DocumentActionState = {
-  status: "idle",
 };
 
 function getValidationState(error: ZodError): DocumentActionState {
@@ -101,8 +99,6 @@ export async function createPatientDocumentAction(
   _previousState: DocumentActionState,
   payload: CreatePatientDocumentInput
 ): Promise<DocumentActionState> {
-  "use server";
-
   const parsedPayload = createPatientDocumentSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -165,8 +161,6 @@ export async function updatePatientDocumentVisibilityAction(
   _previousState: DocumentActionState,
   payload: UpdatePatientDocumentVisibilityInput
 ): Promise<DocumentActionState> {
-  "use server";
-
   const parsedPayload = updatePatientDocumentVisibilitySchema.safeParse(payload);
 
   if (!parsedPayload.success) {

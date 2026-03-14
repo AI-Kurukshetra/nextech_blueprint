@@ -5,7 +5,6 @@ import { startTransition, useActionState, useEffect } from "react";
 import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
-  initialTeamActionState,
   updatePracticeMemberAction,
   type TeamActionState,
 } from "@/app/actions/team";
@@ -36,6 +35,8 @@ type PracticeMemberCardProps = {
   locations: TeamLocation[];
   member: TeamMember;
 };
+
+const initialTeamActionState: TeamActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: TeamActionState,

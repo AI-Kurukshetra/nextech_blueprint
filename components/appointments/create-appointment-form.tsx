@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createAppointmentAction,
-  initialAppointmentActionState,
   type AppointmentActionState,
 } from "@/app/actions/appointments";
 import type {
@@ -46,6 +45,7 @@ const selectClassName =
   "flex h-10 w-full rounded-md border border-white/10 bg-slate-950/70 px-3 py-2 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20";
 const textareaClassName =
   "flex min-h-28 w-full rounded-md border border-white/10 bg-slate-950/70 px-3 py-2 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20";
+const initialAppointmentActionState: AppointmentActionState = { status: "idle" };
 
 function toDateTimeLocalValue(value: Date) {
   const localValue = new Date(value.getTime() - value.getTimezoneOffset() * 60000);

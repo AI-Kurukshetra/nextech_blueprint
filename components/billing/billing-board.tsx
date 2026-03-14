@@ -4,8 +4,8 @@ import { startTransition, useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import {
-  initialBillingActionState,
   updateBillingRecordStatusAction,
+  type BillingActionState,
 } from "@/app/actions/billing";
 import type {
   BillingRecordEntry,
@@ -33,6 +33,8 @@ type BillingBoardProps = {
   records: BillingRecordEntry[];
   stats: BillingRecordStats;
 };
+
+const initialBillingActionState: BillingActionState = { status: "idle" };
 
 function formatCurrency(value: number) {
   return new Intl.NumberFormat("en-US", {

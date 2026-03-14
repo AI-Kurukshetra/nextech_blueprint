@@ -4,9 +4,9 @@ import { startTransition, useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Search } from "lucide-react";
 import {
-  initialClinicalNoteActionState,
   updateClinicalNoteStatusAction,
   updateClinicalNoteVisibilityAction,
+  type ClinicalNoteActionState,
 } from "@/app/actions/clinical-notes";
 import type {
   ClinicalNoteEntry,
@@ -34,6 +34,8 @@ type ClinicalNotesBoardProps = {
   notes: ClinicalNoteEntry[];
   stats: ClinicalNoteStats;
 };
+
+const initialClinicalNoteActionState: ClinicalNoteActionState = { status: "idle" };
 
 function formatDateTime(value: string) {
   return new Intl.DateTimeFormat("en-US", {

@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createLocationAction,
-  initialTeamActionState,
   type TeamActionState,
 } from "@/app/actions/team";
 import { FormStatus } from "@/components/auth/form-status";
@@ -57,6 +56,7 @@ const defaultValues: CreateLocationFormValues = {
   phone: "",
   stateRegion: "",
 };
+const initialTeamActionState: TeamActionState = { status: "idle" };
 
 export function CreateLocationForm() {
   const [actionState, submitAction, isPending] = useActionState(

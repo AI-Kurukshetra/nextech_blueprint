@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createPatientAction,
-  initialPatientActionState,
   type PatientActionState,
 } from "@/app/actions/patients";
 import { FormStatus } from "@/components/auth/form-status";
@@ -66,6 +65,7 @@ const defaultValues: PatientIntakeFormValues = {
   sexAtBirth: "unknown",
   stateRegion: "",
 };
+const initialPatientActionState: PatientActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: PatientActionState,

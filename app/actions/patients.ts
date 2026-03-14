@@ -1,3 +1,5 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -17,10 +19,6 @@ export type PatientActionState = {
   fieldErrors?: ValidationErrors;
   message?: string;
   status: "error" | "idle" | "success";
-};
-
-export const initialPatientActionState: PatientActionState = {
-  status: "idle",
 };
 
 function getValidationState(error: ZodError): PatientActionState {
@@ -98,8 +96,6 @@ export async function createPatientAction(
   _previousState: PatientActionState,
   payload: PatientIntakeInput
 ): Promise<PatientActionState> {
-  "use server";
-
   const parsedPayload = patientIntakeSchema.safeParse(payload);
 
   if (!parsedPayload.success) {

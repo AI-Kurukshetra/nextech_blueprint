@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createBillingRecordAction,
-  initialBillingActionState,
   type BillingActionState,
 } from "@/app/actions/billing";
 import type {
@@ -71,6 +70,7 @@ const defaultValues: CreateBillingRecordFormValues = {
   submittedAt: "",
   units: 1,
 };
+const initialBillingActionState: BillingActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: BillingActionState,

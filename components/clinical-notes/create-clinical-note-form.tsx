@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createClinicalNoteAction,
-  initialClinicalNoteActionState,
   type ClinicalNoteActionState,
 } from "@/app/actions/clinical-notes";
 import type {
@@ -55,6 +54,7 @@ const defaultValues: CreateClinicalNoteFormValues = {
   plan: "",
   subjective: "",
 };
+const initialClinicalNoteActionState: ClinicalNoteActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: ClinicalNoteActionState,

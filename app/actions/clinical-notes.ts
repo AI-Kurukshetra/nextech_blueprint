@@ -1,3 +1,5 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { requireUserPracticeContext } from "@/lib/auth/session";
@@ -23,10 +25,6 @@ export type ClinicalNoteActionState = {
   fieldErrors?: ValidationErrors;
   message?: string;
   status: "error" | "idle" | "success";
-};
-
-export const initialClinicalNoteActionState: ClinicalNoteActionState = {
-  status: "idle",
 };
 
 function getValidationState(error: ZodError): ClinicalNoteActionState {
@@ -125,8 +123,6 @@ export async function createClinicalNoteAction(
   _previousState: ClinicalNoteActionState,
   payload: CreateClinicalNoteInput
 ): Promise<ClinicalNoteActionState> {
-  "use server";
-
   const parsedPayload = createClinicalNoteSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -188,8 +184,6 @@ export async function updateClinicalNoteStatusAction(
   _previousState: ClinicalNoteActionState,
   payload: UpdateClinicalNoteStatusInput
 ): Promise<ClinicalNoteActionState> {
-  "use server";
-
   const parsedPayload = updateClinicalNoteStatusSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
@@ -252,8 +246,6 @@ export async function updateClinicalNoteVisibilityAction(
   _previousState: ClinicalNoteActionState,
   payload: UpdateClinicalNoteVisibilityInput
 ): Promise<ClinicalNoteActionState> {
-  "use server";
-
   const parsedPayload = updateClinicalNoteVisibilitySchema.safeParse(payload);
 
   if (!parsedPayload.success) {

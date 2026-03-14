@@ -5,7 +5,6 @@ import Link from "next/link";
 import { startTransition, useActionState, useEffect } from "react";
 import { type UseFormSetError, useForm } from "react-hook-form";
 import {
-  initialActionState,
   signInAction,
   type ActionState,
 } from "@/app/actions/auth";
@@ -33,6 +32,8 @@ type LoginFormProps = {
     tone: "error" | "success";
   };
 };
+
+const initialActionState: ActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: ActionState,

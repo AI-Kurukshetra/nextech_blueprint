@@ -5,7 +5,6 @@ import { startTransition, useActionState, useEffect } from "react";
 import { type UseFormSetError, useForm } from "react-hook-form";
 import {
   createPracticeAction,
-  initialActionState,
   type ActionState,
 } from "@/app/actions/auth";
 import { FormStatus } from "@/components/auth/form-status";
@@ -27,6 +26,7 @@ import {
 } from "@/lib/validations";
 
 const DEFAULT_TIMEZONE = "UTC";
+const initialActionState: ActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: ActionState,

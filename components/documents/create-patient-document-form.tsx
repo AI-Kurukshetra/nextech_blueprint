@@ -6,7 +6,6 @@ import { type UseFormSetError, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   createPatientDocumentAction,
-  initialDocumentActionState,
   type DocumentActionState,
 } from "@/app/actions/documents";
 import type {
@@ -56,6 +55,7 @@ const defaultValues: CreatePatientDocumentFormValues = {
   storageBucket: "patient-documents",
   storagePath: "",
 };
+const initialDocumentActionState: DocumentActionState = { status: "idle" };
 
 function applyFieldErrors(
   actionState: DocumentActionState,
